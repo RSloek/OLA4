@@ -59,6 +59,9 @@ for (i in 1:length(icaov)) {
   if (raw$status == 200) {
     loopdf <- tracksMakeDF(raw, tabs)
     tracks[[icaov[i]]] <- loopdf
+    Sys.sleep(0.1)
+  } else if (raw$status == 404){
+    print(icaov[i])
   }
 }
 
