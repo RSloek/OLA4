@@ -2,53 +2,91 @@ library(jsonlite)
 library(httr)
 library(stringr)
 library(ggplot2)
-source("util.R")
+source("util_Rasmus.R")
 library(logr)
+
+
+#=============================================================================.
+#lav url'er===================================================================
+#=============================================================================.
 
 baseurl <- "https://opensky-network.org/api"
 
-#
 endpointS <- "/states/all"
 endpointT <- "/tracks/all"
 
-#
 queryS <- paste0(baseurl,endpointS)
 queryT <- paste0(baseurl,endpointT)
 
-
 #### NORTH SEA ####
-lamin=52.055129
-lamax=56.196869
-lomin=-6.065140
-lomax=4.305954
+lamin= c(53.304621, 55.397831, 58.286395, 51.896834)
+lomin= c(-0.252305, -3.295898, -6.437988, 1.636963)
 
-# variable scrabe til funktoiner
+lamax= c(55.397831, 58.286395, 61.856149, 53.804621)
+lomax= c(8.701172, 8.657227, 5.108945, 4.174805)
+
+#loop for at få alle url'er (3 url'er)
+urlList <- c()
+for (i in 1:length(lomax)) {
+  urlList=c(urlList, paste0(queryS, "?lamin=",lamin[i],"&lomin=",lomin[i],"&lamax=",lamax[i],"&lomax=",lomax[i]))
+}
+urlList
+
+
+#=============================================================================.
+# "tabs" variable til scrabe funktoiner=======================================
+#=============================================================================.
 page <-  read_html("https://openskynetwork.github.io/opensky-api/rest.html")
 tabs <- page |> html_elements("table") |> html_table()
 
 
-fullurl=paste0(queryS, "?lamin=",lamin,"&lomin=",lomin,"&lamax=",lamax,"&lomax=",lomax)
+#=============================================================================.
+# Hvor er flyene fra?=========================================================
+#=============================================================================.
 
-# one take over NS (skateboard)
-token=getToken()
-raw <- getRawFromUrl(fullurl, token)
-statedf <- statesMakeDF(raw, tabs)
+# find alle norht sea fly
+statedf <- data.frame()
+for (url in urlList) {
+  token=getToken()
+  raw <- getRawFromUrl(url, token)
+  urldf <- statesMakeDF(raw, tabs)
+  statedf <- rbind(statedf, urldf)
+  Sys.sleep(0.1)
+}
+View(statedf)
 
-# find all icaos and put in vector
+# df over hvilket land fly kommer fra
+flytable <- table(statedf$origin_country)
+flydf <- as.data.frame(flytable)
+flydf <- flydf[order(flydf$Freq, decreasing = T),]
+
+
+#=============================================================================.
+# Enkelte fly==================================================================
+#=============================================================================.
+
+
+# alle icaos i en vector
 icaov = statedf$icao24
-# find all tracks for each normal icao
-# start with one test icao
-ictest=icaov[[50]]
+
+# one test icao
+ictest=icaov[[2]]
 ictest
+
 token=getToken()
 url=paste0(queryT,"?icao24=",ictest, "&time=0")
 raw <- getRawFromUrl(url, token)
-statedf <- tracksMakeDF(raw, tabs)
-
+trackdf <- tracksMakeDF(raw, tabs)
 
 #plots
-myEDAPlots(statedf)
-myMapPlot(statedf)
+myEDAPlots(trackdf)
+myMapPlot(trackdf)
+
+
+
+
+
+
 
 
 tracks <- list()
@@ -111,4 +149,47 @@ nsd=sd(statedf$crs)
 # use diff to track change of fortegn
 
 
+
+
+
+
+
+
+#=============================================================================.
+# Hvor er flyene fra?=========================================================
+#=============================================================================.
+
+# Nøgletal til overskrift og undertitel
+n       <- sum(flydf$Freq)
+topLand <- as.character(flydf$Var1[1])
+andel   <- round(100 * max(flydf$Freq) / n)
+nLande  <- nrow(flydf)
+hentet  <- "06-11-2026 kl. 12:30"   # <- skriv tidspunktet for jeres hentning
+
+# Fremhæv det største land, resten i grå
+flydf$fremhaev <- flydf$Var1 == topLand
+
+ggplot(flydf, aes(x = Freq, y = reorder(Var1, Freq), fill = fremhaev)) +
+  geom_col(width = 0.7) +
+  geom_text(aes(label = Freq), hjust = -0.3, size = 3.5) +
+  scale_fill_manual(values = c(`TRUE` = "#1f4e79", `FALSE` = "grey70"), guide = "none") +
+  scale_x_continuous(expand = expansion(mult = c(0, 0.08))) +
+  labs(
+    # Konkluderende overskrift – ret teksten, hvis jeres friske data viser noget andet
+    title    = paste0(topLand, " dominerer luftrummet over Nordsøen – ",
+                      andel, " % af flyene er registreret dér"),
+    # Objektiv undertitel – hvad grafen viser
+    subtitle = paste0("Antal fly pr. registreringsland i Nordsø-bounding-boxen, øjebliksbillede ",
+                      hentet, " (n = ", n, " fly fra ", nLande, " lande)"),
+    x        = "Antal fly",
+    y        = NULL,
+    caption  = "Kilde: OpenSky Network REST API (/states/all), variablen origin_country"
+  ) +
+  theme_minimal(base_size = 12) +
+  theme(
+    plot.title.position = "plot",
+    plot.title          = element_text(face = "bold"),
+    panel.grid.major.y  = element_blank(),
+    panel.grid.minor    = element_blank()
+  )
 
