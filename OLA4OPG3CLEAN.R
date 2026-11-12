@@ -156,9 +156,10 @@ if (file.exists(fundfil)) {
 }
 
 #hvilke fly er helt nye for os
-nyefly <- cirkelFlyIcao[!(cirkelFlyIcao %in% alleFund$icao)]
+#nyefly <- cirkelFlyIcao[!(cirkelFlyIcao %in% alleFund$icao)]
 
 # opdater eller tilføj=================.
+nyefly <- c()
 antalNye <- 0
 for (icao in cirkelFlyIcao) {
   if (icao %in% alleFund$icao) {
@@ -171,6 +172,7 @@ for (icao in cirkelFlyIcao) {
     alleFund <- rbind(alleFund, data.frame(icao = icao, foersteGang = nu,
                                            sidstSet = nu, antalGange = 1))
     antalNye <- antalNye + 1
+    nyefly <- c(nyefly, icao)
   }
 }
 
@@ -245,7 +247,7 @@ if (length(nyefly) > 0) {
       from      = Sys.getenv("GMAIL_USER"),
       to        = Sys.getenv("MAIL_TIL"),
       subject   = paste0("Mistænkelige fly over Nordsøen - ", format(Sys.time(), "%d-%m-%Y %H:%M")),
-      text      = paste0("Kørslen fandt ", length(cirkelFlyIcao), " cirklende fly:\n\n", paste(cirkelFlyIcao, collapse = "\n"))
+      text      = paste0("Kørslen fandt ", length(nyefly), " cirklende fly:\n\n", paste(nyefly, collapse = "\n"))
     )
     
     #send via gmail======================.
