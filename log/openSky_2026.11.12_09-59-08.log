@@ -1,0 +1,203 @@
+=========================================================================
+Log Path: ./log/openSky_2026.11.12_09-59-08.log
+Program Path:
+C:/Users/rasmu/Documents/Dataanalyse/R_Projekter/OLA4/OLA4OPG3CLEAN.R
+Working Directory: C:/Users/rasmu/Documents/Dataanalyse/R_Projekter/OLA4
+User Name: rasmu
+R Version: 4.6.1 (2026-06-24 ucrt)
+Machine: DESKTOP-C82P985 x86-64
+Operating System: Windows 10 x64 build 19045
+Base Packages: stats graphics grDevices utils datasets methods base
+Other Packages: logr_1.4.1 common_1.1.5 rvest_1.0.5 leaflet_2.2.3 ggplot2_4.0.3
+stringr_1.6.0 httr_1.4.9 jsonlite_2.0.0
+Log Start Time: 2026-11-12 09:59:08.834305
+=========================================================================
+
+Starter loop over 62 fly
+
+[1/62] 471fa1 - henter track
+
+status: 200
+
+ok - 74 waypoints
+
+[2/62] c058dd - henter track
+
+status: 200
+
+ok - 791 waypoints
+
+[3/62] 4bb0e6 - henter track
+
+status: 200
+
+ok - 102 waypoints
+
+[4/62] 781d6d - henter track
+
+status: 200
+
+ok - 196 waypoints
+
+[5/62] ac0196 - henter track
+
+status: 200
+
+ok - 825 waypoints
+
+[6/62] a51d6f - henter track
+
+status: 200
+
+ok - 164 waypoints
+
+[7/62] 06a2ec - henter track
+
+status: 200
+
+ok - 258 waypoints
+
+[8/62] 06a2b5 - henter track
+
+status: 200
+
+ok - 88 waypoints
+
+[9/62] 407eb2 - henter track
+
+status: 200
+
+ok - 145 waypoints
+
+[10/62] 406a3d - henter track
+
+status: 200
+
+ok - 80 waypoints
+
+[1/62] 471fa1 - henter track
+
+status: 200
+
+ok - 74 waypoints
+
+[2/62] c058dd - henter track
+
+status: 200
+
+ok - 791 waypoints
+
+[3/62] 4bb0e6 - henter track
+
+status: 200
+
+ok - 103 waypoints
+
+[4/62] 781d6d - henter track
+
+status: 200
+
+ok - 196 waypoints
+
+[5/62] ac0196 - henter track
+
+status: 200
+
+ok - 825 waypoints
+
+[6/62] a51d6f - henter track
+
+status: 200
+
+ok - 164 waypoints
+
+[7/62] 06a2ec - henter track
+
+status: 200
+
+ok - 260 waypoints
+
+[8/62] 06a2b5 - henter track
+
+status: 200
+
+ok - 88 waypoints
+
+[9/62] 407eb2 - henter track
+
+status: 200
+
+ok - 145 waypoints
+
+[10/62] 406a3d - henter track
+
+status: 200
+
+ok - 80 waypoints
+
+Starter loop over 62 fly
+
+[ 1 / 62 ] 471fa1 - henter track ok - 74 waypoints status: 200
+
+[ 2 / 62 ] c058dd - henter track ok - 791 waypoints status: 200
+
+[ 3 / 62 ] 4bb0e6 - henter track ok - 105 waypoints status: 200
+
+[ 4 / 62 ] 781d6d - henter track ok - 214 waypoints status: 200
+
+[ 5 / 62 ] ac0196 - henter track ok - 847 waypoints status: 200
+
+[ 6 / 62 ] a51d6f - henter track ok - 172 waypoints status: 200
+
+[ 7 / 62 ] 06a2ec - henter track ok - 269 waypoints status: 200
+
+[ 8 / 62 ] 06a2b5 - henter track ok - 88 waypoints status: 200
+
+[ 9 / 62 ] 407eb2 - henter track ok - 147 waypoints status: 200
+
+[ 10 / 62 ] 406a3d - henter track ok - 86 waypoints status: 200
+
+Starter loop over 62 fly
+
+[1/62] 471fa1 - henter track ok - 74 waypoints status: 200
+
+[2/62] c058dd - henter track ok - 791 waypoints status: 200
+
+[3/62] 4bb0e6 - henter track ok - 107 waypoints status: 200
+
+[4/62] 781d6d - henter track ok - 238 waypoints status: 200
+
+[5/62] ac0196 - henter track ok - 855 waypoints status: 200
+
+[6/62] a51d6f - henter track ok - 198 waypoints status: 200
+
+[7/62] 06a2ec - henter track ok - 275 waypoints status: 200
+
+[8/62] 06a2b5 - henter track ok - 88 waypoints status: 200
+
+[9/62] 407eb2 - henter track ok - 165 waypoints status: 200
+
+[10/62] 406a3d - henter track ok - 88 waypoints status: 200
+
+Starter loop over 62 fly
+
+[1/62] 471fa1 - henter track. ok - 74 waypoints. status: 200.
+
+[2/62] c058dd - henter track. ok - 791 waypoints. status: 200.
+
+[3/62] 4bb0e6 - henter track. ok - 107 waypoints. status: 200.
+
+[4/62] 781d6d - henter track. ok - 238 waypoints. status: 200.
+
+[5/62] ac0196 - henter track. ok - 856 waypoints. status: 200.
+
+[6/62] a51d6f - henter track. ok - 198 waypoints. status: 200.
+
+[7/62] 06a2ec - henter track. ok - 279 waypoints. status: 200.
+
+[8/62] 06a2b5 - henter track. ok - 88 waypoints. status: 200.
+
+[9/62] 407eb2 - henter track. ok - 172 waypoints. status: 200.
+
+[10/62] 406a3d - henter track. ok - 88 waypoints. status: 200.
+

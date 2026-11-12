@@ -1,0 +1,263 @@
+=========================================================================
+Log Path: ./log/openSky_2026.11.12_10-41-44.log
+Program Path:
+C:/Users/rasmu/Documents/Dataanalyse/R_Projekter/OLA4/OLA4OPG3CLEAN.R
+Working Directory: C:/Users/rasmu/Documents/Dataanalyse/R_Projekter/OLA4
+User Name: rasmu
+R Version: 4.6.1 (2026-06-24 ucrt)
+Machine: DESKTOP-C82P985 x86-64
+Operating System: Windows 10 x64 build 19045
+Base Packages: stats graphics grDevices utils datasets methods base
+Other Packages: logr_1.4.1 common_1.1.5 rvest_1.0.5 leaflet_2.2.3 ggplot2_4.0.3
+stringr_1.6.0 httr_1.4.9 jsonlite_2.0.0
+Log Start Time: 2026-11-12 10:41:45.550458
+=========================================================================
+
+Script startet.
+
+NOTE: Log Print Time:  2026-11-12 10:41:45.555855
+NOTE: Elapsed Time: 0.00258708000183105 secs
+
+4 url'er lavet til Nordsø-boksene.
+
+NOTE: Log Print Time:  2026-11-12 10:41:45.570576
+NOTE: Elapsed Time: 0.0147209167480469 secs
+
+API-dokumentation hentet - 18 tabeller.
+
+NOTE: Log Print Time:  2026-11-12 10:41:46.794502
+NOTE: Elapsed Time: 1.22392606735229 secs
+
+[1/4] boks - 22 fly. status: 200.
+
+NOTE: Log Print Time:  2026-11-12 10:41:47.772624
+NOTE: Elapsed Time: 0.978121995925903 secs
+
+[2/4] boks - 9 fly. status: 200.
+
+NOTE: Log Print Time:  2026-11-12 10:41:48.153001
+NOTE: Elapsed Time: 0.380377054214478 secs
+
+[3/4] boks - 12 fly. status: 200.
+
+NOTE: Log Print Time:  2026-11-12 10:41:49.333599
+NOTE: Elapsed Time: 1.18059802055359 secs
+
+[4/4] boks - 11 fly. status: 200.
+
+NOTE: Log Print Time:  2026-11-12 10:41:49.632282
+NOTE: Elapsed Time: 0.298682928085327 secs
+
+Starter loop over 54 fly
+
+NOTE: Log Print Time:  2026-11-12 10:41:50.254432
+NOTE: Elapsed Time: 0.62214994430542 secs
+
+[1/54] 4bc8ce - henter track. ok - 116 waypoints. status: 200.
+
+NOTE: Log Print Time:  2026-11-12 10:41:51.352492
+NOTE: Elapsed Time: 1.098060131073 secs
+
+[2/54] 4aca84 - henter track. ok - 104 waypoints. status: 200.
+
+NOTE: Log Print Time:  2026-11-12 10:41:51.476569
+NOTE: Elapsed Time: 0.124076843261719 secs
+
+[3/54] 484c97 - henter track. ok - 64 waypoints. status: 200.
+
+NOTE: Log Print Time:  2026-11-12 10:41:51.665581
+NOTE: Elapsed Time: 0.189012050628662 secs
+
+[4/54] 485f84 - henter track. ok - 66 waypoints. status: 200.
+
+NOTE: Log Print Time:  2026-11-12 10:41:52.736615
+NOTE: Elapsed Time: 1.07103395462036 secs
+
+[5/54] 40780e - henter track. ok - 105 waypoints. status: 200.
+
+NOTE: Log Print Time:  2026-11-12 10:41:52.919138
+NOTE: Elapsed Time: 0.182523012161255 secs
+
+[6/54] 3c70c6 - henter track. ok - 87 waypoints. status: 200.
+
+NOTE: Log Print Time:  2026-11-12 10:41:53.953636
+NOTE: Elapsed Time: 1.0344979763031 secs
+
+[7/54] 4b8e45 - henter track. ok - 130 waypoints. status: 200.
+
+NOTE: Log Print Time:  2026-11-12 10:41:54.064338
+NOTE: Elapsed Time: 0.110702037811279 secs
+
+[8/54] 486071 - henter track. ok - 56 waypoints. status: 200.
+
+NOTE: Log Print Time:  2026-11-12 10:41:54.700108
+NOTE: Elapsed Time: 0.635770082473755 secs
+
+[9/54] 47a1ef - henter track. ok - 122 waypoints. status: 200.
+
+NOTE: Log Print Time:  2026-11-12 10:41:54.801891
+NOTE: Elapsed Time: 0.101783037185669 secs
+
+[10/54] 45ab22 - henter track. ok - 101 waypoints. status: 200.
+
+NOTE: Log Print Time:  2026-11-12 10:41:55.434682
+NOTE: Elapsed Time: 0.632790803909302 secs
+
+[11/54] 4869c5 - henter track. ok - 37 waypoints. status: 200.
+
+NOTE: Log Print Time:  2026-11-12 10:41:55.532993
+NOTE: Elapsed Time: 0.098311185836792 secs
+
+[12/54] 440d39 - henter track. ok - 57 waypoints. status: 200.
+
+NOTE: Log Print Time:  2026-11-12 10:41:55.753536
+NOTE: Elapsed Time: 0.220542907714844 secs
+
+[13/54] 484555 - henter track. ok - 38 waypoints. status: 200.
+
+NOTE: Log Print Time:  2026-11-12 10:41:56.878324
+NOTE: Elapsed Time: 1.12478804588318 secs
+
+[14/54] 485814 - henter track. ok - 51 waypoints. status: 200.
+
+NOTE: Log Print Time:  2026-11-12 10:41:57.002278
+NOTE: Elapsed Time: 0.123954057693481 secs
+
+[15/54] 4867c0 - henter track. ok - 98 waypoints. status: 200.
+
+NOTE: Log Print Time:  2026-11-12 10:41:57.120704
+NOTE: Elapsed Time: 0.118425846099854 secs
+
+[16/54] 4ca7b7 - henter track. ok - 59 waypoints. status: 200.
+
+NOTE: Log Print Time:  2026-11-12 10:41:58.29151
+NOTE: Elapsed Time: 1.17080616950989 secs
+
+[17/54] 4864ec - henter track. ok - 76 waypoints. status: 200.
+
+NOTE: Log Print Time:  2026-11-12 10:41:58.481624
+NOTE: Elapsed Time: 0.19011378288269 secs
+
+[18/54] 4bcdb6 - henter track. ok - 60 waypoints. status: 200.
+
+NOTE: Log Print Time:  2026-11-12 10:41:59.574394
+NOTE: Elapsed Time: 1.09277009963989 secs
+
+[19/54] 4852f4 - henter track. ok - 120 waypoints. status: 200.
+
+NOTE: Log Print Time:  2026-11-12 10:41:59.767728
+NOTE: Elapsed Time: 0.193334102630615 secs
+
+[20/54] 485e2f - henter track. ok - 304 waypoints. status: 200.
+
+NOTE: Log Print Time:  2026-11-12 10:42:00.830053
+NOTE: Elapsed Time: 1.06232500076294 secs
+
+[21/54] 4d2469 - henter track. ok - 67 waypoints. status: 200.
+
+NOTE: Log Print Time:  2026-11-12 10:42:01.093843
+NOTE: Elapsed Time: 0.263789892196655 secs
+
+[22/54] 4070e8 - henter track. ok - 88 waypoints. status: 200.
+
+NOTE: Log Print Time:  2026-11-12 10:42:02.162358
+NOTE: Elapsed Time: 1.06851506233215 secs
+
+[23/54] 4aca53 - henter track. ok - 98 waypoints. status: 200.
+
+NOTE: Log Print Time:  2026-11-12 10:42:02.774321
+NOTE: Elapsed Time: 0.611963033676147 secs
+
+[24/54] 486493 - henter track. ok - 85 waypoints. status: 200.
+
+NOTE: Log Print Time:  2026-11-12 10:42:02.878013
+NOTE: Elapsed Time: 0.103691816329956 secs
+
+[25/54] 3f9ae8 - henter track. ok - 81 waypoints. status: 200.
+
+NOTE: Log Print Time:  2026-11-12 10:42:03.521947
+NOTE: Elapsed Time: 0.643934011459351 secs
+
+[26/54] 4cc57b - henter track. ok - 53 waypoints. status: 200.
+
+NOTE: Log Print Time:  2026-11-12 10:42:03.682898
+NOTE: Elapsed Time: 0.160951137542725 secs
+
+[27/54] 3de65b - henter track. ok - 5 waypoints. status: 200.
+
+NOTE: Log Print Time:  2026-11-12 10:42:04.350778
+NOTE: Elapsed Time: 0.667880058288574 secs
+
+[28/54] 486741 - henter track. ok - 68 waypoints. status: 200.
+
+NOTE: Log Print Time:  2026-11-12 10:42:04.582021
+NOTE: Elapsed Time: 0.231242895126343 secs
+
+[29/54] 45a1cc - henter track. ok - 51 waypoints. status: 200.
+
+NOTE: Log Print Time:  2026-11-12 10:42:05.66001
+NOTE: Elapsed Time: 1.07798910140991 secs
+
+[30/54] 40753c - henter track. ok - 72 waypoints. status: 200.
+
+NOTE: Log Print Time:  2026-11-12 10:42:05.853772
+NOTE: Elapsed Time: 0.193761825561523 secs
+
+[31/54] 4070ff - henter track. ok - 56 waypoints. status: 200.
+
+NOTE: Log Print Time:  2026-11-12 10:42:06.918148
+NOTE: Elapsed Time: 1.06437611579895 secs
+
+[32/54] 45dd84 - henter track. ok - 67 waypoints. status: 200.
+
+NOTE: Log Print Time:  2026-11-12 10:42:07.138564
+NOTE: Elapsed Time: 0.220416069030762 secs
+
+[33/54] 47c272 - henter track. ok - 32 waypoints. status: 200.
+
+NOTE: Log Print Time:  2026-11-12 10:42:08.198333
+NOTE: Elapsed Time: 1.05976891517639 secs
+
+[34/54] 896473 - henter track. ok - 94 waypoints. status: 200.
+
+NOTE: Log Print Time:  2026-11-12 10:42:08.40963
+NOTE: Elapsed Time: 0.211297035217285 secs
+
+Fejl i (function (..., row.names = NULL, check.rows = FALSE, check.names =
+TRUE, : argumenter antyder forskelligt antal rækker: 1, 0, 2
+Traceback:
+6: stop(gettextf("arguments imply differing number of rows: %s", 
+       paste(unique(nrows), collapse = ", ")), domain = NA)
+5: (function (..., row.names = NULL, check.rows = FALSE, check.names = TRUE, 
+       fix.empty.names = TRUE, stringsAsFactors = FALSE) 
+   {
+       data.row.names <- if (check.rows && is.null(row.names)) 
+           function(current, new, i) {
+               if (is.character(current)) 
+                   new <- as.character(new)
+               if (is.character(new)) 
+                   current <- as.character(current)
+               if (anyDuplicated(new)) 
+                   return(current)
+               if (is.null(current)) 
+                   return(new)
+               if (all(current == new) || all(current == "")) 
+                   return(new)
+               stop(gettextf("mismatch of row names in arguments of 'data.frame', item %d", 
+                   i), domain = NA)
+           }
+       else function(current, new, i) {
+           current %||% if (anyDuplicated(new)) {
+     ...
+4: do.call(data.frame, c(x, alis))
+3: as.data.frame.list(rawJSONlist)
+2: as.data.frame(rawJSONlist) at util_Rasmus.R#76
+1: tracksMakeDF(raw, tabs)
+
+NOTE: Log Print Time:  2026-11-12 10:42:09.516078
+NOTE: Elapsed Time: 1.10644793510437 secs
+
+=========================================================================
+Log End Time: 2026-11-12 10:42:09.522789
+Log Elapsed Time: 0 00:00:23
+=========================================================================

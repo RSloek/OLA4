@@ -7,7 +7,7 @@ library(logr)
 
 
 #=============================================================================.
-#lav url'er===================================================================
+# lav url'er==================================================================
 #=============================================================================.
 
 baseurl <- "https://opensky-network.org/api"
@@ -19,13 +19,13 @@ queryS <- paste0(baseurl,endpointS)
 queryT <- paste0(baseurl,endpointT)
 
 #### NORTH SEA ####
-lamin= c(53.304621, 55.397831, 58.286395, 51.896834)
-lomin= c(-0.252305, -3.295898, -6.437988, 1.636963)
+lamin= c(51.896834, 53.804621, 55.397831, 58.286395)
+lomin= c(1.636963, -0.252305, -1.695898, -6.437988)
 
-lamax= c(55.397831, 58.286395, 61.856149, 53.804621)
-lomax= c(8.701172, 8.657227, 5.108945, 4.174805)
+lamax= c(53.804621, 55.397831, 58.286395, 61.856149)
+lomax= c(4.174805, 8.201172, 8.007227, 5.108945)
 
-#loop for at få alle url'er (3 url'er)
+#loop for at få alle url'er
 urlList <- c()
 for (i in 1:length(lomax)) {
   urlList=c(urlList, paste0(queryS, "?lamin=",lamin[i],"&lomin=",lomin[i],"&lamax=",lamax[i],"&lomax=",lomax[i]))
@@ -39,6 +39,22 @@ urlList
 page <-  read_html("https://openskynetwork.github.io/opensky-api/rest.html")
 tabs <- page |> html_elements("table") |> html_table()
 
+#=============================================================================.
+# Load training data==========================================================
+#=============================================================================.
+fl=list.files(path = "./RDS_fly",pattern = "*rds", full.names = T)
+RDSlist=lapply(fl,readRDS)
+
+#scrape names from api doc
+vars1 <- tabs[[17]]
+vars2 <- tabs[[18]]
+names1 <- unlist(vars1$Property[1:length(vars1$Property)-1])
+names2 <- unlist(vars2$Property)
+namesdf <- c(names1, names2)
+for (i in 1:length(RDSlist)) {
+  names(RDSlist[[i]])=namesdf
+  names(RDSlist)[i] <- RDSlist[[i]]$icao24[1]
+}
 
 #=============================================================================.
 # Hvor er flyene fra?=========================================================
@@ -53,16 +69,15 @@ for (url in urlList) {
   statedf <- rbind(statedf, urldf)
   Sys.sleep(0.1)
 }
-View(statedf)
+
 
 # df over hvilket land fly kommer fra
 flytable <- table(statedf$origin_country)
 flydf <- as.data.frame(flytable)
 flydf <- flydf[order(flydf$Freq, decreasing = T),]
 
-
 #=============================================================================.
-# Enkelte fly==================================================================
+# Enkelte fly=================================================================
 #=============================================================================.
 
 
@@ -70,24 +85,24 @@ flydf <- flydf[order(flydf$Freq, decreasing = T),]
 icaov = statedf$icao24
 
 # one test icao
-ictest=icaov[[2]]
-ictest
-
 token=getToken()
-url=paste0(queryT,"?icao24=",ictest, "&time=0")
+url=paste0(queryT,"?icao24=",icaov[[1]] , "&time=0")
 raw <- getRawFromUrl(url, token)
-trackdf <- tracksMakeDF(raw, tabs)
+trackicaovdf <- tracksMakeDF(raw, tabs)
+
+#test data frame
+RDSdf <- RDSlist[[1]]
 
 #plots
-myEDAPlots(trackdf)
-myMapPlot(trackdf)
+myEDAPlots(trackicaovdf)
+myMapPlot(trackicaovdf)
 
+myEDAPlots(RDSdf)
+myMapPlot(RDSdf)
 
-
-
-
-
-
+#=============================================================================.
+# Flere fly===================================================================
+#=============================================================================.
 
 tracks <- list()
 for (i in 1:length(icaov)) {
@@ -96,65 +111,56 @@ for (i in 1:length(icaov)) {
   raw <- getRawFromUrl(url, token)
   if (raw$status == 200) {
     loopdf <- tracksMakeDF(raw, tabs)
+    loopdf$sd <- sd(loopdf$true_track)
     tracks[[icaov[i]]] <- loopdf
-    Sys.sleep(0.1)
+    Sys.sleep(0.2)
   } else if (raw$status == 404){
     print(icaov[i])
   }
 }
 
-
-myEDAPlots(tracks$`4bc8c4`)
-myMapPlot(tracks$`4bc8c4`)
-
-
-# load training-data
-fl=list.files(path = "./RDS_fly",pattern = "*rds", full.names = T)
-collist=lapply(fl,readRDS)
-testdf=collist[[1]]
-testdf=readRDS("RDS_fly/circMT.rds")
-names(testdf) <- namesdf
-
-# plots to explore data
-myEDAPlots(testdf)
-# map-plot to verify flight
-myMapPlot(testdf)
-par(mfrow=c(1,1))
-plot(testdf$lng,testdf$lat)
-plot(testdf$time,testdf$crs)
-
-dlatv=diff(testdf$lat)
-dlnv=diff(testdf$lng)
-dlatv=c(0,dlatv)
-dlnv=c(0,dlnv)
-testdf$dlat=dlatv
-testdf$dlng=dlnv
-
-ggplot(testdf,aes(x=time,y=lat))+geom_line()+
-  theme(axis.text.x = element_text(angle = 90))+
-  scale_x_continuous(breaks = scales::pretty_breaks(n=35))
-
-
-# apply circmetrics
-# lm
-cmodel=lm(lat ~ lng+crs+alt, data=testdf)
-nmodel=lm(lat ~ lng+crs+alt, data=statedf)
-summary(cmodel)
-summary(nmodel)
-# sd
-csd=sd(testdf$crs)
-nsd=sd(statedf$crs)
-
-# myOwnDetectionAlg
-# use diff to track change of fortegn
+# test plot
+myEDAPlots(tracks[[1]])
+myMapPlot(tracks[[1]])
 
 
 
+for (i in 1:length(tracks)) {
+  if (tracks[[i]]$sd[1] > 100) {
+    print(tracks[[i]]$icao24[1])
+    print(tracks[[i]]$sd[1])
+  }
+}
+
+# myEDAPlots(tracks$`43c6f4`)
+# myMapPlot(tracks$`43c6f4`)
 
 
+#=============================================================================.
+# Egen algo===================================================================
+#=============================================================================.
 
+alleFly <- c(tracks, RDSlist)
 
+cirkelFlyIcao <- c()
+for (fly in alleFly) {
+  if (antalOmgange(fly) >= 2) {
+    cirkelFlyIcao <- c(cirkelFlyIcao, fly$icao24[1])
+  }
+}
+cirkelFly <- alleFly[cirkelFlyIcao]
 
+resultdf <- data.frame(
+  icao  = c(names(tracks), names(RDSlist)),
+  isOff = c(rep(0, length(tracks)), rep(1, length(RDSlist)))
+)
+resultdf$myOwnAlg <- ifelse(resultdf$icao %in% cirkelFlyIcao, 1, 0)
+
+View(resultdf)
+
+myMapPlot(cirkelFly[[1]])
+
+antalOmgange(cirkelFly[[1]])
 #=============================================================================.
 # Hvor er flyene fra?=========================================================
 #=============================================================================.

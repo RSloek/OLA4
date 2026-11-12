@@ -3,9 +3,9 @@ library(leaflet)
 library(ggplot2)
 library(httr)
 library(rvest)
-user_name <- "rasmussloek@gmail.com"
-clientId = "rasmussloek@gmail.com-api-client"
-clientSecret = "IcJKt1lPJBoiIXoHnj5uaxUBdzm7gpcU"
+user_name <- Sys.getenv("GMAIL_USER")
+clientId <- Sys.getenv("OPENSKY_ID")
+clientSecret <- Sys.getenv("OPENSKY_SECRET")
 
 
 # Request an access token
@@ -38,7 +38,6 @@ getRawFromUrl <- function(url, token) {
     url = url,
     add_headers(Authorization = paste("Bearer", token, sep = " "))
   )
-  
   print(raw$status_code)
   return(raw)
 }
@@ -58,7 +57,7 @@ myEDAPlots <- function(df) {
 
 statesMakeDF <- function(raw, tabs) {
   # make raw to df
-  content <- content(raw, as="text")
+  content <- content(raw, as="text", encoding = "UTF-8")
   rawJSONlist <- fromJSON(content)
   df <- as.data.frame(rawJSONlist$states)
   
@@ -72,7 +71,8 @@ statesMakeDF <- function(raw, tabs) {
 
 tracksMakeDF <- function(raw, tabs) {
   # make raw to df
-  rawJSONlist <- fromJSON(content(raw, as="text"))
+  content <- content(raw, as="text", encoding = "UTF-8")
+  rawJSONlist <- fromJSON(content)
   df <- as.data.frame(rawJSONlist)
   
   # scrape variable colnames
@@ -85,9 +85,18 @@ tracksMakeDF <- function(raw, tabs) {
   return(df)
 }
 
+kursAendring <- function(kurs) {
+  d <- diff(kurs)
+  kurs <- ((d + 180) %% 360) - 180
+  return(kurs)
+}
 
-
-
+antalOmgange <- function(df) {
+  #grader ændret siden afgang
+  grader <- sum(abs(kursAendring(df$true_track)))
+  omgange <- grader / 360
+  return(omgange)
+}
 
 
 

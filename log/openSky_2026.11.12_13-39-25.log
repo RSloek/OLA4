@@ -1,0 +1,240 @@
+=========================================================================
+Log Path: ./log/openSky_2026.11.12_13-39-25.log
+Program Path:
+C:/Users/rasmu/Documents/Dataanalyse/R_Projekter/OLA4/OLA4OPG3CLEAN.R
+Working Directory: C:/Users/rasmu/Documents/Dataanalyse/R_Projekter/OLA4
+User Name: rasmu
+R Version: 4.6.1 (2026-06-24 ucrt)
+Machine: DESKTOP-C82P985 x86-64
+Operating System: Windows 10 x64 build 19045
+Base Packages: stats graphics grDevices utils datasets methods base
+Other Packages: emayili_0.9.3 logr_1.4.1 common_1.1.5 rvest_1.0.5 leaflet_2.2.3
+ggplot2_4.0.3 stringr_1.6.0 httr_1.4.9 jsonlite_2.0.0
+Log Start Time: 2026-11-12 13:39:26.215536
+=========================================================================
+
+Script startet.
+
+NOTE: Log Print Time:  2026-11-12 13:39:26.222
+NOTE: Elapsed Time: 0.00271391868591309 secs
+
+5 url'er lavet til Nordsø-boksene.
+
+NOTE: Log Print Time:  2026-11-12 13:39:26.238898
+NOTE: Elapsed Time: 0.0168981552124023 secs
+
+API-dokumentation hentet - 18 tabeller.
+
+NOTE: Log Print Time:  2026-11-12 13:39:27.385448
+NOTE: Elapsed Time: 1.14654994010925 secs
+
+[1/5] boks - 9 fly. status: 200.
+
+NOTE: Log Print Time:  2026-11-12 13:39:28.252484
+NOTE: Elapsed Time: 0.867036104202271 secs
+
+[2/5] boks - 3 fly. status: 200.
+
+NOTE: Log Print Time:  2026-11-12 13:39:29.462915
+NOTE: Elapsed Time: 1.21043086051941 secs
+
+[3/5] boks - 10 fly. status: 200.
+
+NOTE: Log Print Time:  2026-11-12 13:39:30.182382
+NOTE: Elapsed Time: 0.719467163085938 secs
+
+[4/5] boks - 4 fly. status: 200.
+
+NOTE: Log Print Time:  2026-11-12 13:39:30.501689
+NOTE: Elapsed Time: 0.31930685043335 secs
+
+[5/5] boks - 7 fly. status: 200.
+
+NOTE: Log Print Time:  2026-11-12 13:39:31.662495
+NOTE: Elapsed Time: 1.16080594062805 secs
+
+Starter loop over 33 fly
+
+NOTE: Log Print Time:  2026-11-12 13:39:31.771459
+NOTE: Elapsed Time: 0.108964204788208 secs
+
+[1/33] 471f3d - henter track. ok - 81 waypoints. status: 200.
+
+NOTE: Log Print Time:  2026-11-12 13:39:31.998722
+NOTE: Elapsed Time: 0.2272629737854 secs
+
+[2/33] 478383 - henter track. ok - 49 waypoints. status: 200.
+
+NOTE: Log Print Time:  2026-11-12 13:39:32.38304
+NOTE: Elapsed Time: 0.384317874908447 secs
+
+[3/33] 4783e3 - henter track. ok - 32 waypoints. status: 200.
+
+NOTE: Log Print Time:  2026-11-12 13:39:32.782226
+NOTE: Elapsed Time: 0.399186134338379 secs
+
+[4/33] 479e29 - henter track. ok - 12 waypoints. status: 200.
+
+NOTE: Log Print Time:  2026-11-12 13:39:34.988155
+NOTE: Elapsed Time: 2.20592880249023 secs
+
+[5/33] 06a11e - henter track. ok - 157 waypoints. status: 200.
+
+NOTE: Log Print Time:  2026-11-12 13:39:35.801053
+NOTE: Elapsed Time: 0.8128981590271 secs
+
+[6/33] 06a12a - henter track. ok - 138 waypoints. status: 200.
+
+NOTE: Log Print Time:  2026-11-12 13:39:36.654986
+NOTE: Elapsed Time: 0.853932857513428 secs
+
+[7/33] 4a91af - henter track. ok - 50 waypoints. status: 200.
+
+NOTE: Log Print Time:  2026-11-12 13:39:37.485155
+NOTE: Elapsed Time: 0.830169200897217 secs
+
+[8/33] 3c66e2 - henter track. ok - 193 waypoints. status: 200.
+
+NOTE: Log Print Time:  2026-11-12 13:39:37.868744
+NOTE: Elapsed Time: 0.383588790893555 secs
+
+[9/33] 3c66e7 - henter track. ok - 143 waypoints. status: 200.
+
+NOTE: Log Print Time:  2026-11-12 13:39:39.132705
+NOTE: Elapsed Time: 1.26396107673645 secs
+
+[10/33] 4ba94d - henter track. ok - 155 waypoints. status: 200.
+
+NOTE: Log Print Time:  2026-11-12 13:39:39.9338
+NOTE: Elapsed Time: 0.801095008850098 secs
+
+[11/33] 485873 - henter track. ok - 99 waypoints. status: 200.
+
+NOTE: Log Print Time:  2026-11-12 13:39:40.757061
+NOTE: Elapsed Time: 0.823261022567749 secs
+
+[12/33] 4b1921 - henter track. ok - 123 waypoints. status: 200.
+
+NOTE: Log Print Time:  2026-11-12 13:39:41.133811
+NOTE: Elapsed Time: 0.376749992370605 secs
+
+[13/33] 4aca8b - henter track. ok - 92 waypoints. status: 200.
+
+NOTE: Log Print Time:  2026-11-12 13:39:42.401139
+NOTE: Elapsed Time: 1.26732802391052 secs
+
+[14/33] 407b4d - henter track. ok - 8 waypoints. status: 200.
+
+NOTE: Log Print Time:  2026-11-12 13:39:43.223053
+NOTE: Elapsed Time: 0.821913957595825 secs
+
+[15/33] 4aca06 - henter track. ok - 62 waypoints. status: 200.
+
+NOTE: Log Print Time:  2026-11-12 13:39:44.020487
+NOTE: Elapsed Time: 0.797434091567993 secs
+
+[16/33] 8004df - henter track. ok - 73 waypoints. status: 200.
+
+NOTE: Log Print Time:  2026-11-12 13:39:44.85214
+NOTE: Elapsed Time: 0.831652879714966 secs
+
+[17/33] 406e52 - henter track. ok - 2 waypoints. status: 200.
+
+NOTE: Log Print Time:  2026-11-12 13:39:45.22655
+NOTE: Elapsed Time: 0.374410152435303 secs
+
+[18/33] 45ab21 - henter track. ok - 88 waypoints. status: 200.
+
+NOTE: Log Print Time:  2026-11-12 13:39:46.467601
+NOTE: Elapsed Time: 1.24105095863342 secs
+
+[19/33] 3c65ca - henter track. ok - 64 waypoints. status: 200.
+
+NOTE: Log Print Time:  2026-11-12 13:39:47.286002
+NOTE: Elapsed Time: 0.818400859832764 secs
+
+[20/33] 484555 - henter track. ok - 58 waypoints. status: 200.
+
+NOTE: Log Print Time:  2026-11-12 13:39:48.102149
+NOTE: Elapsed Time: 0.816147089004517 secs
+
+[21/33] 4caf7e - henter track. ok - 104 waypoints. status: 200.
+
+NOTE: Log Print Time:  2026-11-12 13:39:48.480929
+NOTE: Elapsed Time: 0.378779888153076 secs
+
+[22/33] 4070ff - henter track. ok - 113 waypoints. status: 200.
+
+NOTE: Log Print Time:  2026-11-12 13:39:49.705878
+NOTE: Elapsed Time: 1.22494912147522 secs
+
+[23/33] 4aca53 - henter track. ok - 59 waypoints. status: 200.
+
+NOTE: Log Print Time:  2026-11-12 13:39:50.51508
+NOTE: Elapsed Time: 0.809201955795288 secs
+
+[24/33] 4cc570 - henter track. ok - 61 waypoints. status: 200.
+
+NOTE: Log Print Time:  2026-11-12 13:39:51.351387
+NOTE: Elapsed Time: 0.836307048797607 secs
+
+[25/33] 3c4582 - henter track. ok - 93 waypoints. status: 200.
+
+NOTE: Log Print Time:  2026-11-12 13:39:52.174726
+NOTE: Elapsed Time: 0.823338985443115 secs
+
+[26/33] 4b191e - henter track. ok - 142 waypoints. status: 200.
+
+NOTE: Log Print Time:  2026-11-12 13:39:52.995408
+NOTE: Elapsed Time: 0.820682048797607 secs
+
+[27/33] 461faa - henter track. ok - 119 waypoints. status: 200.
+
+NOTE: Log Print Time:  2026-11-12 13:39:53.805398
+NOTE: Elapsed Time: 0.809989929199219 secs
+
+[28/33] a51601 - henter track. ok - 50 waypoints. status: 200.
+
+NOTE: Log Print Time:  2026-11-12 13:39:54.619768
+NOTE: Elapsed Time: 0.814369916915894 secs
+
+[29/33] 407f86 - henter track. ok - 188 waypoints. status: 200.
+
+NOTE: Log Print Time:  2026-11-12 13:39:55.427325
+NOTE: Elapsed Time: 0.807557106018066 secs
+
+[30/33] 407dfc - henter track. ok - 196 waypoints. status: 200.
+
+NOTE: Log Print Time:  2026-11-12 13:39:56.239605
+NOTE: Elapsed Time: 0.812279939651489 secs
+
+[31/33] 4cc594 - henter track. ok - 66 waypoints. status: 200.
+
+NOTE: Log Print Time:  2026-11-12 13:39:56.613094
+NOTE: Elapsed Time: 0.373489141464233 secs
+
+[32/33] 4864ef - henter track. ok - 94 waypoints. status: 200.
+
+NOTE: Log Print Time:  2026-11-12 13:39:57.892588
+NOTE: Elapsed Time: 1.27949380874634 secs
+
+[33/33] 49329a - henter track. ok - 53 waypoints. status: 200.
+
+NOTE: Log Print Time:  2026-11-12 13:39:58.696399
+NOTE: Elapsed Time: 0.803811073303223 secs
+
+Loop færdigt - 33 af 33 fly har et track.
+
+NOTE: Log Print Time:  2026-11-12 13:39:58.985844
+NOTE: Elapsed Time: 0.289444923400879 secs
+
+Kører egen algoritme på 33 fly.
+
+NOTE: Log Print Time:  2026-11-12 13:39:58.989306
+NOTE: Elapsed Time: 0.00346207618713379 secs
+
+1 cirklende fly fundet: 407f86.
+
+NOTE: Log Print Time:  2026-11-12 13:39:59.007144
+NOTE: Elapsed Time: 0.0178380012512207 secs
+
