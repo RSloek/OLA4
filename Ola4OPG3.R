@@ -158,7 +158,9 @@ resultdf$myOwnAlg <- ifelse(resultdf$icao %in% cirkelFlyIcao, 1, 0)
 
 View(resultdf)
 
-myMapPlot(cirkelFly[[1]])
+for (fly in RDSlist) {
+  print(myMapPlot(fly))
+}
 
 antalOmgange(cirkelFly[[1]])
 #=============================================================================.
