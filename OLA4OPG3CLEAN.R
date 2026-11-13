@@ -276,7 +276,7 @@ if (length(nyefly) > 0) {
 log_print("Script færdigt.")
 log_close()
 
-# for (fly in cirkelfly_tracks_gemt) {
-#   print(myMapPlot(fly))
-# }
+for (fly in cirkelfly_tracks_gemt) {
+  print(myMapPlot(fly))
+}
 

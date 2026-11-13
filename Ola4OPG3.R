@@ -168,28 +168,31 @@ antalOmgange(cirkelFly[[1]])
 #=============================================================================.
 
 # Nøgletal til overskrift og undertitel
-n       <- sum(flydf$Freq)
-topLand <- as.character(flydf$Var1[1])
-andel   <- round(100 * max(flydf$Freq) / n)
-nLande  <- nrow(flydf)
-hentet  <- "06-11-2026 kl. 12:30"   # <- skriv tidspunktet for jeres hentning
+n         <- sum(flydf$Freq)
+nLande    <- nrow(flydf)
+top3      <- as.character(flydf$Var1[1:3])
+andelTop3 <- round(100 * sum(flydf$Freq[1:3]) / n)
+hentet    <- format(Sys.time(), "%d-%m-%Y kl. %H:%M")   # flyt gerne op lige efter states-loopet
 
-# Fremhæv det største land, resten i grå
-flydf$fremhaev <- flydf$Var1 == topLand
+# Andel pr. land
+flydf$andel <- flydf$Freq / n
 
-ggplot(flydf, aes(x = Freq, y = reorder(Var1, Freq), fill = fremhaev)) +
+# Fremhæv de tre største lande, resten i grå
+flydf$fremhaev <- flydf$Var1 %in% top3
+
+ggplot(flydf, aes(x = andel, y = reorder(Var1, andel), fill = fremhaev)) +
   geom_col(width = 0.7) +
-  geom_text(aes(label = Freq), hjust = -0.3, size = 3.5) +
+  geom_text(aes(label = scales::percent(andel, accuracy = 1)), hjust = -0.3, size = 3.5) +
   scale_fill_manual(values = c(`TRUE` = "#1f4e79", `FALSE` = "grey70"), guide = "none") +
-  scale_x_continuous(expand = expansion(mult = c(0, 0.08))) +
+  scale_x_continuous(labels = scales::percent,
+                     expand = expansion(mult = c(0, 0.1))) +
   labs(
-    # Konkluderende overskrift – ret teksten, hvis jeres friske data viser noget andet
-    title    = paste0(topLand, " dominerer luftrummet over Nordsøen – ",
-                      andel, " % af flyene er registreret dér"),
+    # Konkluderende overskrift
+    title    = paste0(andelTop3, " % af flyene over Nordsøen er registreret i blot tre lande"),
     # Objektiv undertitel – hvad grafen viser
-    subtitle = paste0("Antal fly pr. registreringsland i Nordsø-bounding-boxen, øjebliksbillede ",
-                      hentet, " (n = ", n, " fly fra ", nLande, " lande)"),
-    x        = "Antal fly",
+    subtitle = paste0("Andel af fly pr. registreringsland i fem bokse over Nordsøen, øjebliksbillede ",
+                      hentet, " (n = ", n, " fly fra ", nLande, " lande). Fremhævet: de tre største lande"),
+    x        = "Andel af flyene",
     y        = NULL,
     caption  = "Kilde: OpenSky Network REST API (/states/all), variablen origin_country"
   ) +
