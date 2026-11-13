@@ -259,7 +259,8 @@ if (length(nyefly) > 0) {
     )
     
     #send via gmail======================.
-    smtp <- server(host = "smtp.gmail.com", port = 465,
+    smtp <- server(host = "smtp.gmail.com", 
+                   port = 465,
                    username = Sys.getenv("GMAIL_USER"),
                    password = Sys.getenv("GMAIL_APP_PW"))
     smtp(mail)
@@ -276,7 +277,7 @@ if (length(nyefly) > 0) {
 log_print("Script færdigt.")
 log_close()
 
-for (fly in cirkelfly_tracks_gemt) {
-  print(myMapPlot(fly))
-}
+# for (fly in cirkelfly_tracks_gemt) {
+#   print(myMapPlot(fly))
+# }
 
