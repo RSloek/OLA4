@@ -8,7 +8,6 @@ clientId <- Sys.getenv("OPENSKY_ID")
 clientSecret <- Sys.getenv("OPENSKY_SECRET")
 
 
-# Request an access token
 
 getToken <- function() {
   token=NULL
@@ -31,7 +30,6 @@ getToken <- function() {
   return(token)
 }
 
-# lav dette til en function i util - getRawFromUrl(url)
 getRawFromUrl <- function(url, token) {
   
   raw = GET(
