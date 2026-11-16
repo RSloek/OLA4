@@ -18,7 +18,7 @@ endpointT <- "/tracks/all"
 queryS <- paste0(baseurl,endpointS)
 queryT <- paste0(baseurl,endpointT)
 
-#### NORTH SEA ####
+### NORTH SEA ###
 lamin= c(58.786395, 57.906395, 55.397831, 53.804621, 52.196834)
 lomin= c(-6.437988, -2.505898, -1.305898, 0.152305, 1.936963)
 
@@ -37,7 +37,7 @@ urlList
 # "tabs" variable til scrabe funktoiner=======================================
 #=============================================================================.
 page <-  read_html("https://openskynetwork.github.io/opensky-api/rest.html")
-tabs <- page |> html_elements("table") |> html_table()
+tabs <-  page |> html_elements("table") |> html_table()
 
 #=============================================================================.
 # Load training data==========================================================
