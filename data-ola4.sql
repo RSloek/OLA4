@@ -1,3 +1,11 @@
+create database bilbasen;
+use bilbasen;
+
+CREATE TABLE `forhandler` (
+  `forhandler_id` varchar(36) NOT NULL,
+  `lokation` varchar(37) DEFAULT NULL,
+  PRIMARY KEY (`forhandler_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE TABLE `bil` (
   `Bil_id` varchar(7) NOT NULL,
@@ -12,12 +20,6 @@ CREATE TABLE `bil` (
   PRIMARY KEY (`Bil_id`),
   KEY `forhandler_id_idx` (`forhandler_id`),
   CONSTRAINT `forhandler_id` FOREIGN KEY (`forhandler_id`) REFERENCES `forhandler` (`forhandler_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
-CREATE TABLE `forhandler` (
-  `forhandler_id` varchar(36) NOT NULL,
-  `lokation` varchar(37) DEFAULT NULL,
-  PRIMARY KEY (`forhandler_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE TABLE `pris` (
