@@ -61,15 +61,32 @@ for (i in 1:length(RDSlist)) {
 #=============================================================================.
 
 # find alle norht sea fly
+# statedf <- data.frame()
+# for (url in urlList) {
+#   token=getToken()
+#   raw <- getRawFromUrl(url, token)
+#   urldf <- statesMakeDF(raw, tabs)
+#   statedf <- rbind(statedf, urldf)
+#   Sys.sleep(0.1)
+# }
+
 statedf <- data.frame()
 for (url in urlList) {
-  token=getToken()
-  raw <- getRawFromUrl(url, token)
-  urldf <- statesMakeDF(raw, tabs)
-  statedf <- rbind(statedf, urldf)
+  tryCatch({ #trycatch for hvis der ikke er nogle fly i vores boks
+    #hent rå data========================.
+    token=getToken()
+    raw <- getRawFromUrl(url, token)
+    
+    #lav df og læg til===================.
+    urldf <- statesMakeDF(raw, tabs)
+    statedf <- rbind(statedf, urldf)
+    log_print(paste0("[", match(url, urlList), "/", length(urlList), "] boks - ", nrow(urldf), " fly.\nstatus: ", raw$status_code, "."))
+  }, error = function(e) {
+    #hvis fejl=========================.
+    log_print(paste0("[", match(url, urlList), "/", length(urlList), "] boks - FEJL: ", conditionMessage(e)))
+  })  
   Sys.sleep(0.1)
 }
-
 
 # df over hvilket land fly kommer fra
 flytable <- table(statedf$origin_country)
@@ -114,7 +131,8 @@ for (i in 1:length(icaov)) {
     loopdf$sd <- sd(loopdf$true_track)
     tracks[[icaov[i]]] <- loopdf
     Sys.sleep(0.2)
-  } else if (raw$status == 404){
+  } else {
+    print(raw$status_code)
     print(icaov[i])
   }
 }
@@ -168,17 +186,17 @@ antalOmgange(cirkelFly[[1]])
 #=============================================================================.
 
 # Nøgletal til overskrift og undertitel
-n         <- sum(flydf$Freq)
-nLande    <- nrow(flydf)
-top3      <- as.character(flydf$Var1[1:3])
-andelTop3 <- round(100 * sum(flydf$Freq[1:3]) / n)
-hentet    <- format(Sys.time(), "%d-%m-%Y kl. %H:%M")   # flyt gerne op lige efter states-loopet
+n        <- sum(flydf$Freq)
+nLande   <- nrow(flydf)
+topLand  <- as.character(flydf$Var1[1])
+andelTop <- round(100 * flydf$Freq[1] / n)
+hentet   <- format(Sys.time(), "%d-%m-%Y kl. %H:%M")   # flyt gerne op lige efter states-loopet
 
 # Andel pr. land
 flydf$andel <- flydf$Freq / n
 
-# Fremhæv de tre største lande, resten i grå
-flydf$fremhaev <- flydf$Var1 %in% top3
+# Fremhæv kun det største land, resten i grå
+flydf$fremhaev <- flydf$Var1 == topLand
 
 ggplot(flydf, aes(x = andel, y = reorder(Var1, andel), fill = fremhaev)) +
   geom_col(width = 0.7) +
@@ -187,14 +205,14 @@ ggplot(flydf, aes(x = andel, y = reorder(Var1, andel), fill = fremhaev)) +
   scale_x_continuous(labels = scales::percent,
                      expand = expansion(mult = c(0, 0.1))) +
   labs(
-    # Konkluderende overskrift
-    title    = paste0(andelTop3, " % af flyene over Nordsøen er registreret i blot tre lande"),
+    # Konkluderende overskrift – skrevet til dette øjebliksbillede
+    title    = paste0("Tyskland har flest fly over Nordsøen – mere end hvert femte fly er tysk (", andelTop, " %)"),
     # Objektiv undertitel – hvad grafen viser
-    subtitle = paste0("Andel af fly pr. registreringsland i fem bokse over Nordsøen, øjebliksbillede ",
-                      hentet, " (n = ", n, " fly fra ", nLande, " lande). Fremhævet: de tre største lande"),
+    subtitle = paste0("Andel af fly pr. registreringsland over Nordsøen, øjebliksbillede ",
+                      hentet, " (n = ", n, " fly fra ", nLande, " lande)"),
     x        = "Andel af flyene",
     y        = NULL,
-    caption  = "Kilde: OpenSky Network REST API (/states/all), variablen origin_country"
+    caption  = "Kilde: OpenSky Network REST API"
   ) +
   theme_minimal(base_size = 12) +
   theme(

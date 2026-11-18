@@ -96,5 +96,3 @@ antalOmgange <- function(df) {
   return(omgange)
 }
 
-
-
