@@ -152,7 +152,7 @@ resultdf$myOwnAlg <- ifelse(resultdf$icao %in% cirkelFlyIcao, 1, 0)
 # Gem fundne fly==============================================================
 #=============================================================================.
 
-fundfil <- "OpenSky_Saves/cirkelfly_fundet.csv"
+fundfil <- "cirkelfly_fundet.csv"
 nu <- format(Sys.time(), "%Y-%m-%d %H:%M:%S")
 
 # hent tidligere fund==================.
@@ -191,7 +191,7 @@ log_print(paste0(length(cirkelFlyIcao), " cirkelfly fundet - heraf ", antalNye, 
 #=============================================================================.
 
 # hent tidligere tracks================.
-trackfil <- "OpenSky_Saves/cirkelfly_tracks_gemt.rds"
+trackfil <- "cirkelfly_tracks_gemt.rds"
 if (file.exists(trackfil)) {
   gemteTracks <- readRDS(trackfil)
 } else {
