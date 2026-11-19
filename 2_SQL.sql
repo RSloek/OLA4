@@ -1,79 +1,7 @@
+create database Bilbasen;
 use Bilbasen;
 
--- pris table --
-create table pris as
-select Bil_id, pris from bbscrape;
-
-ALTER TABLE pris
-  ADD pris_id INT,
-  ADD scrapedate DATE;
-
-alter table pris modify pris_id int first;
-alter table pris modify bil_id varchar(7) after pris_id;
-alter table pris modify pris int after bil_id;
-alter table pris modify scrapedate date after pris;
-
-update pris set scrapedate = '2026-11-11' where pris_id > 0;
-
-select * from pris;
-
--- bil --
-select * from bbscrape;
-
-create table bil as
-select Bil_id, forhandler_id, bilmodel_kort as model, registrerings_år, kørte_km, drivmiddel, rækkevidde, link from bbscrape;
-
-ALTER TABLE bil
-  ADD sold boolean default false;
-
-select * from bil;
-
-
--- forhandler --
-
-create table forhandler as
-select distinct forhandler_id, lokation from bbscrape where forhandler_id is not null;
-
-select * from forhandler;
-drop table forhandler;
-select * from bbscrape;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-drop table pris;
-drop table bil;
-drop table forhandler;
-
+-- Create bilbasen's tables --
 
 CREATE TABLE forhandler (
   forhandler_id  VARCHAR(36) PRIMARY KEY,
@@ -101,6 +29,8 @@ CREATE TABLE pris (
   FOREIGN KEY (bil_id) REFERENCES bil(Bil_id)
 );
 
+-- Send bbscrape fra r --
+-- Insert bbscrape data i tabler --
 
 INSERT INTO forhandler (forhandler_id, lokation)
 select distinct forhandler_id, lokation from bbscrape where forhandler_id is not null;
@@ -117,85 +47,4 @@ INSERT INTO pris (bil_id, pris)
 SELECT bil_id, pris
 FROM bbscrape;
 update pris set scrapedate = '2026-11-11' where pris_id > 0;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

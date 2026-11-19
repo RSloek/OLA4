@@ -2,7 +2,7 @@ library(jsonlite)
 library(httr)
 library(stringr)
 library(ggplot2)
-source("util_Rasmus.R")
+source("util.R")
 library(logr)
 
 #=============================================================================.
@@ -152,7 +152,7 @@ resultdf$myOwnAlg <- ifelse(resultdf$icao %in% cirkelFlyIcao, 1, 0)
 # Gem fundne fly==============================================================
 #=============================================================================.
 
-fundfil <- "cirkelfly_fundet.csv"
+fundfil <- "OpenSky_Saves/cirkelfly_fundet.csv"
 nu <- format(Sys.time(), "%Y-%m-%d %H:%M:%S")
 
 # hent tidligere fund==================.
@@ -163,8 +163,6 @@ if (file.exists(fundfil)) {
                          sidstSet = character(), antalGange = character())
 }
 
-#hvilke fly er helt nye for os
-#nyefly <- cirkelFlyIcao[!(cirkelFlyIcao %in% alleFund$icao)]
 
 # opdater eller tilføj=================.
 nyefly <- c()
@@ -193,7 +191,7 @@ log_print(paste0(length(cirkelFlyIcao), " cirkelfly fundet - heraf ", antalNye, 
 #=============================================================================.
 
 # hent tidligere tracks================.
-trackfil <- "cirkelfly_tracks_gemt.rds"
+trackfil <- "OpenSky_Saves/cirkelfly_tracks_gemt.rds"
 if (file.exists(trackfil)) {
   gemteTracks <- readRDS(trackfil)
 } else {
