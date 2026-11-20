@@ -2,7 +2,7 @@ library(jsonlite)
 library(httr)
 library(stringr)
 library(ggplot2)
-source("util_Rasmus.R")
+source("util.R")
 library(logr)
 
 
