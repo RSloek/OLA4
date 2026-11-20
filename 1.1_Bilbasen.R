@@ -159,7 +159,7 @@ log_print("Test: Loggen er åben")
 
 limit <- 89
 
-for (i in seq_len(limit)) {
+for (i in 1:limit) {
   
   # 5.1 Åbn søgeresultatsiden, og find dens annoncekort ------------------------
   

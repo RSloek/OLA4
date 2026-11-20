@@ -68,7 +68,7 @@ json_de <- html_text(html_element(page_de, "script#__NEXT_DATA__"))
 annoncer_de <- jsonlite::fromJSON(json_de)$props$pageProps$listings
 
 link_de <- annoncer_de$url[match(Bil_id_de, annoncer_de$id)]
-link_de <- xml2::url_absolute(link_de, "https://www.autoscout24.de")
+link_de <- paste0("https://www.autoscout24.de", link_de)
 link_de
 
 
@@ -94,12 +94,14 @@ lokation_de <-  str_remove(lokation_text_de, "^DE-[0-9]{5} +")
 
 #Forhandler id
 
-forhandler_id_de <- html_attr(biler_de[[1]], "data-customer-id")
+forhandler_id_de <- html_attr(testbil_de, "data-customer-id")
 forhandler_element_de <- html_element(testbil_de, "span[data-testid='dealer-company-name']")
 forhandler_navn <- html_text(forhandler_element_de)
 
 
 # 4. TEST LOOP  ================================================================
+
+biler_de <- html_elements(page_de, "article[data-testid='list-item']")
 
 json_de <- html_text(html_element(page_de, "script#__NEXT_DATA__"))
 annoncer_de <- jsonlite::fromJSON(json_de)$props$pageProps$listings
@@ -164,7 +166,8 @@ browsersession_de$view()
 # Start med to sider. Loggen er allerede åbnet i sektion 2.
 limit <- 200
 
-for (i in seq.int(from = 144, to = limit)) {
+
+for (i in 144:limit) {
   
   # 5.1 Åbn siden, og hent annoncekort og linkdata -------------------------------
   
@@ -192,7 +195,7 @@ for (i in seq.int(from = 144, to = limit)) {
   
   # 5.2 Gennemgå annoncerne én ad gangen ---------------------------------------
   
-  for (j in seq_along(biler_de)) {
+  for (j in 1:length(biler_de)) {
     tryCatch({
       
       testbil_de <- biler_de[[j]]
