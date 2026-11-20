@@ -76,7 +76,7 @@ tracksMakeDF <- function(raw, tabs) {
   # scrape variable colnames
   vars1 <- tabs[[17]]
   vars2 <- tabs[[18]]
-  names1 <- unlist(vars1$Property[1:length(vars1$Property)-1])
+  names1 <- unlist(vars1$Property[c(1,4,2,3)])
   names2 <- unlist(vars2$Property)
   namesdf <- c(names1, names2)
   colnames(df)=namesdf

@@ -25,6 +25,8 @@ lomin= c(-6.437988, -2.505898, -1.305898, 0.152305, 1.936963)
 lamax= c(61.856149, 58.786395, 57.906395, 55.397831, 53.804621)
 lomax= c(4.608945, 5.207227, 8.007227, 8.201172, 4.174805)
 
+
+
 #loop for at få alle url'er
 urlList <- c()
 for (i in 1:length(lomax)) {
@@ -42,13 +44,13 @@ tabs <-  page |> html_elements("table") |> html_table()
 #=============================================================================.
 # Load training data==========================================================
 #=============================================================================.
-fl=list.files(path = "./RDS_fly",pattern = "*rds", full.names = T)
+fl=list.files(path = "./3_RDS_fly",pattern = "*rds", full.names = T)
 RDSlist=lapply(fl,readRDS)
 
 #scrape names from api doc
 vars1 <- tabs[[17]]
 vars2 <- tabs[[18]]
-names1 <- unlist(vars1$Property[1:length(vars1$Property)-1])
+names1 <- unlist(vars1$Property[c(1,4,2,3)])
 names2 <- unlist(vars2$Property)
 namesdf <- c(names1, names2)
 for (i in 1:length(RDSlist)) {
@@ -80,10 +82,10 @@ for (url in urlList) {
     #lav df og læg til===================.
     urldf <- statesMakeDF(raw, tabs)
     statedf <- rbind(statedf, urldf)
-    log_print(paste0("[", match(url, urlList), "/", length(urlList), "] boks - ", nrow(urldf), " fly.\nstatus: ", raw$status_code, "."))
+    print(paste0("[", match(url, urlList), "/", length(urlList), "] boks - ", nrow(urldf), " fly.\nstatus: ", raw$status_code, "."))
   }, error = function(e) {
     #hvis fejl=========================.
-    log_print(paste0("[", match(url, urlList), "/", length(urlList), "] boks - FEJL: ", conditionMessage(e)))
+    print(paste0("[", match(url, urlList), "/", length(urlList), "] boks - FEJL: ", conditionMessage(e)))
   })  
   Sys.sleep(0.1)
 }
@@ -138,13 +140,13 @@ for (i in 1:length(icaov)) {
 }
 
 # test plot
-myEDAPlots(tracks[[1]])
-myMapPlot(tracks[[1]])
+myEDAPlots(tracks[[2]])
+myMapPlot(tracks[[2]])
 
 
-
+#kig på noget sd
 for (i in 1:length(tracks)) {
-  if (tracks[[i]]$sd[1] > 100) {
+  if (tracks[[i]]$sd[1] > 90) {
     print(tracks[[i]]$icao24[1])
     print(tracks[[i]]$sd[1])
   }
